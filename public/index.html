@@ -3,14 +3,14 @@
     <head></head>
     <body>
         <h1>MongoDB with Netlify Functions</h1>
-        <ul id="movies"></ul>
+        <ul id="pins"></ul>
         <script>
             (async () => {
-                let results = await fetch("/.netlify/functions/get_movies").then(response => response.json());
+                let results = await fetch("/.netlify/functions/hello-world").then(response => response.json());
                 results.forEach(result => {
                     const listItem = document.createElement("li");
                     listItem.innerText = result.title;
-                    document.getElementById("movies").appendChild(listItem);
+                    document.getElementById("pins").appendChild(listItem);
                 });
             })();
         </script>
