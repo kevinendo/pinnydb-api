@@ -2,11 +2,12 @@
 <html>
     <head></head>
     <body>
-        <h1>MongoDB with Netlify Functions</h1>
+        <h1>MongoDB with Netlify Functions-hello</h1>
+
         <ul id="pins"></ul>
         <script>
             (async () => {
-                let results = await fetch("/.netlify/functions/hello-world").then(response => response.json());
+                let results = await fetch("/.netlify/functions/connectMongo").then(response => response.json());
                 results.forEach(result => {
                     const listItem = document.createElement("li");
                     listItem.innerText = result.title;
