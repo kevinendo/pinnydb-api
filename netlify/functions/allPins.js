@@ -6,7 +6,7 @@ const querystring = require('querystring');
 exports.handler = async function (event) {
   const { page = 1 } = event.queryStringParameters;
   // Creating a new MongoClient instance with the MongoDB URL from the environment variables
-  const client = new MongoClient("mongodb+srv://figpindb:snorlaX1@cluster0.37hjp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+  const client = new MongoClient(process.env.MONGODB_URI);
   try {
     // Connecting to the MongoDB server
     await client.connect();
