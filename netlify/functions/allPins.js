@@ -1,17 +1,7 @@
 // Importing the MongoClient class from the mongodb package
 const { MongoClient } = require("mongodb");
 const querystring = require('querystring');
-let HEADERS = {
-  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Origin',
-  'Content-Type': 'application/json', //optional
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
-  'Access-Control-Max-Age': '8640'
-}
 
-//This solves the "No ‘Access-Control-Allow-Origin’ header is present on the requested resource."
-
-HEADERS['Access-Control-Allow-Origin'] = '*'
-HEADERS['Vary'] = 'Origin'
 // Defining the serverless function
 exports.handler = async function (event) {
   const { page = 1 } = event.queryStringParameters;
@@ -33,6 +23,12 @@ exports.handler = async function (event) {
       // Returning a 200 status code and the fetched data
       return {
         statusCode: 200,
+             headers: {
+        /* Required for CORS support to work */
+        'Access-Control-Allow-Origin': '*',
+        /* Required for cookies, authorization headers with HTTPS */
+        'Access-Control-Allow-Credentials': true
+      },
         body: JSON.stringify(data)
       };
     }
